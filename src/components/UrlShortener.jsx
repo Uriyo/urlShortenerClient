@@ -34,20 +34,19 @@ const UrlShortener = () => {
       setShortenedUrl(shortUrl);
       setError(null);
       setIsValidUrl(true);
-    } catch (error) {
-      console.error('Error:', error);
-      setError('Error shortening URL. Please try again.');
-      setShortenedUrl('');
 
+      // Send event to Google Analytics
       if (window.gtag) {
         window.gtag('event', 'url_shortened', {
           event_category: 'URL Shortener',
           event_label: shortUrl,
           value: originalUrl,
         });
-
-
-
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      setError('Error shortening URL. Please try again.');
+      setShortenedUrl('');
     }
   };
 
