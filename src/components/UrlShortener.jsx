@@ -38,6 +38,16 @@ const UrlShortener = () => {
       console.error('Error:', error);
       setError('Error shortening URL. Please try again.');
       setShortenedUrl('');
+
+      if (window.gtag) {
+        window.gtag('event', 'url_shortened', {
+          event_category: 'URL Shortener',
+          event_label: shortUrl,
+          value: originalUrl,
+        });
+
+
+
     }
   };
 
